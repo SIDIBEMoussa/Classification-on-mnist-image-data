@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[1]
 
 
 from sklearn.datasets import fetch_openml
@@ -90,16 +90,3 @@ for i in range(2,30):
 
 
 pl.plot(range(2,30),err)
-
-
-# In[23]:
-
-
-err
-
-
-# In[ ]:
-
-
-
-
