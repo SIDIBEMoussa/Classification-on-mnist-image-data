@@ -19,12 +19,8 @@ mnist = fetch_openml('mnist_784', version=1)
 
 
 from sklearn.model_selection import train_test_split as tts
-from sklearn import neighbors
-model=neighbors.KNeighborsClassifier(n_neighbors=2)
-
-
-# In[25]:
-
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import GridSearch
 
 sample=np.random.randint(mnist.data.shape[0],size=int(mnist.data.shape[0]*0.08))
 sample
@@ -38,11 +34,38 @@ target=mnist.target[sample]
 x_train,x_test,y_train,y_test=tts(data,target,train_size=0.8)
 
 
-# In[27]:
 
 
-model.fit(x_train,y_train)
 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklear.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis,QuadraticDiscriminantAnalysis
+from xgboost import XGBClassifier
+
+Classifiers=[KNeighborsClassifier(),SVC(),ogisticRegression(),RandomForestClassifier(),RandomForestClassifier(),MLPClassifier(),MLPClassifier(),
+             LinearDiscriminantAnalysis(),QuadraticDiscriminantAnalysis(),XGBClassifier()]
+
+
+# In[25]:
+
+import pandas as pd
+
+col=["Name","Accuracy"]
+df=pd.DataFrame(columns=col)
+from classifier in Classifiers:
+    Name=classifier.__name__
+    model=classier.fit(x_train,y_train)
+    y_pred=model.predict(x_test)
+    acc=accuracy_score(y_test,y_pred)
+    print("***Result***")
+    print("="*40)
+    print("{} \n Accuracy:{}".format(Name,acc))
+    print("="*40)
+    df1=pd.DataFrame([[Name,acc]],columns=col)
+    df=df.append(df1)
 
 # In[32]:
 
